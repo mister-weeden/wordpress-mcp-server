@@ -1,12 +1,12 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from mcp_agent.workflows.router.router_base import (
+from mcp.workflows.router.router_base import (
     AgentRouterCategory,
     RouterCategory,
     ServerRouterCategory,
 )
-from mcp_agent.workflows.router.router_llm import (
+from mcp.workflows.router.router_llm import (
     LLMRouter,
     LLMRouterResult,
     StructuredResponse,

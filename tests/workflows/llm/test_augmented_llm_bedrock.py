@@ -6,8 +6,8 @@ from pydantic import BaseModel
 
 from mcp.types import TextContent, SamplingMessage, ImageContent, ListToolsResult
 
-from mcp_agent.config import BedrockSettings
-from mcp_agent.workflows.llm.augmented_llm_bedrock import (
+from mcp.config import BedrockSettings
+from mcp.workflows.llm.augmented_llm_bedrock import (
     BedrockAugmentedLLM,
     RequestParams,
     BedrockMCPTypeConverter,

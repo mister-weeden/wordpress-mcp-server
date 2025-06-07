@@ -1,0 +1,51 @@
+# WordPress MCP Server - Docker Requirements
+# Core dependencies for the containerized application
+
+# Model Context Protocol framework
+mcp>=1.0.0
+
+# Async HTTP client for WordPress REST API
+aiohttp>=3.9.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Enhanced logging and formatting
+colorlog>=6.7.0
+
+# JSON processing and validation
+jsonschema>=4.19.0
+
+# URL parsing and validation
+validators>=0.22.0
+
+# Async utilities
+asyncio-timeout>=4.0.3
+
+# Type checking support (runtime)
+typing-extensions>=4.8.0
+
+# Better exception handling
+rich>=13.6.0
+
+# Configuration file support
+pyyaml>=6.0.1
+
+# Health check utilities
+psutil>=5.9.6
+
+# Date/time utilities
+python-dateutil>=2.8.2
+
+# Secure password generation
+cryptography>=41.0.7
+
+# HTTP status code utilities
+httpx>=0.25.0
+
+# Development and testing (excluded in production)
+# pytest>=7.4.3
+# pytest-asyncio>=0.21.1
+# black>=23.9.1
+# flake8>=6.1.0
+# mypy>=1.6.1

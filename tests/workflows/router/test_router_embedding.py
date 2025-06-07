@@ -2,8 +2,8 @@ import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 import numpy as np
 
-from mcp_agent.agents.agent import Agent
-from mcp_agent.workflows.router.router_embedding import (
+from mcp.agents.agent import Agent
+from mcp.workflows.router.router_embedding import (
     EmbeddingRouter,
     EmbeddingRouterCategory,
 )
@@ -343,7 +343,7 @@ class TestEmbeddingRouter:
 
         # Instead of actually testing the full implementation, let's mock the behavior
         # Create results to return from the mock
-        from mcp_agent.workflows.router.router_base import RouterResult
+        from mcp.workflows.router.router_base import RouterResult
 
         # Create mock results with descending scores
         result1 = RouterResult(result="test_server", p_score=0.9)
@@ -431,7 +431,7 @@ class TestEmbeddingRouter:
         router.initialized = True
 
         # Create mock result that only includes an agent (simulating server being skipped)
-        from mcp_agent.workflows.router.router_base import RouterResult
+        from mcp.workflows.router.router_base import RouterResult
 
         agent_result = RouterResult(result=mock_agent, p_score=0.8)
 
@@ -471,7 +471,7 @@ class TestEmbeddingRouter:
         router.initialized = True
 
         # Create a set of results with descending similarity scores
-        from mcp_agent.workflows.router.router_base import RouterResult
+        from mcp.workflows.router.router_base import RouterResult
 
         result1 = RouterResult(result="server1", p_score=0.9)  # Most similar
         result2 = RouterResult(result="server2", p_score=0.5)  # Less similar

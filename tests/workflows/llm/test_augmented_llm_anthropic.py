@@ -2,12 +2,12 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 from pydantic import BaseModel
-from mcp_agent.config import AnthropicSettings
+from mcp.config import AnthropicSettings
 
 from mcp.types import TextContent, SamplingMessage
 from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 
-from mcp_agent.workflows.llm.augmented_llm_anthropic import (
+from mcp.workflows.llm.augmented_llm_anthropic import (
     AnthropicAugmentedLLM,
     RequestParams,
     AnthropicMCPTypeConverter,
@@ -627,6 +627,6 @@ class TestAnthropicAugmentedLLM:
         messages = final_call_args.payload["messages"]
 
         # Check for the presence of the final answer request message
-        assert self.check_final_iteration_prompt_in_messages(
-            messages
-        ), "No message requesting to stop using tools was found"
+        assert self.check_final_iteration_prompt_in_messages(messages), (
+            "No message requesting to stop using tools was found"
+        )

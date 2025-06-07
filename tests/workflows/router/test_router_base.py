@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import MagicMock
 from typing import List
 
-from mcp_agent.workflows.router.router_base import (
+from mcp.workflows.router.router_base import (
     Router,
     RouterResult,
     RouterCategory,

@@ -1,0 +1,181 @@
+version: "3.8"
+
+services:
+  # Bedrock Database Service
+  bedrock-db:
+    image: ghcr.io/mister-weeden/bedrock-db:v0.0.3
+    container_name: wordpress-mcp-bedrock-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-wordpress}
+      MYSQL_USER: ${MYSQL_USER:-wordpress}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-wordpress123}
+    volumes:
+      - bedrock_db_data:/var/lib/mysql
+    networks:
+      - wordpress-mcp-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+      start_period: 30s
+
+  # Bedrock WordPress Service
+  bedrock:
+    image: ghcr.io/mister-weeden/bedrock:v0.0.3
+    container_name: wordpress-mcp-bedrock
+    restart: unless-stopped
+    ports:
+      - "8888:8080" # Map to port 8888 as specified in requirements
+    environment:
+      # Database Configuration
+      DB_HOST: bedrock-db
+      DB_NAME: ${MYSQL_DATABASE:-wordpress}
+      DB_USER: ${MYSQL_USER:-wordpress}
+      DB_PASSWORD: ${MYSQL_PASSWORD:-wordpress123}
+
+      # WordPress Configuration
+      WP_ENV: ${WP_ENV:-development}
+      WP_HOME: ${WP_HOME:-http://localhost:8888}
+      WP_SITEURL: ${WP_SITEURL:-http://localhost:8888/wp}
+
+      # WordPress Salts (generate unique ones for production)
+      AUTH_KEY: ${AUTH_KEY:-your-unique-auth-key-here}
+      SECURE_AUTH_KEY: ${SECURE_AUTH_KEY:-your-unique-secure-auth-key-here}
+      LOGGED_IN_KEY: ${LOGGED_IN_KEY:-your-unique-logged-in-key-here}
+      NONCE_KEY: ${NONCE_KEY:-your-unique-nonce-key-here}
+      AUTH_SALT: ${AUTH_SALT:-your-unique-auth-salt-here}
+      SECURE_AUTH_SALT: ${SECURE_AUTH_SALT:-your-unique-secure-auth-salt-here}
+      LOGGED_IN_SALT: ${LOGGED_IN_SALT:-your-unique-logged-in-salt-here}
+      NONCE_SALT: ${NONCE_SALT:-your-unique-nonce-salt-here}
+
+      # WordPress Admin User (for MCP server access)
+      WORDPRESS_ADMIN_USER: ${WORDPRESS_ADMIN_USER:-admin}
+      WORDPRESS_ADMIN_PASSWORD: ${WORDPRESS_ADMIN_PASSWORD:-admin123}
+      WORDPRESS_ADMIN_EMAIL: ${WORDPRESS_ADMIN_EMAIL:-admin@example.com}
+    volumes:
+      - bedrock_wp_content:/app/web/app/uploads
+      - bedrock_wp_themes:/app/web/app/themes
+      - bedrock_wp_plugins:/app/web/app/plugins
+    depends_on:
+      bedrock-db:
+        condition: service_healthy
+    networks:
+      - wordpress-mcp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      timeout: 10s
+      retries: 5
+      interval: 30s
+      start_period: 60s
+
+  # WordPress MCP Server (stdio mode for Claude Desktop)
+  wordpress-mcp-server:
+    build: .
+    container_name: wordpress-mcp-server
+    restart: unless-stopped
+    environment:
+      WORDPRESS_URL: http://bedrock:8080
+      WORDPRESS_USERNAME: ${WORDPRESS_ADMIN_USER:-admin}
+      WORDPRESS_PASSWORD: ${WORDPRESS_ADMIN_PASSWORD:-admin123}
+      MCP_SERVER_PORT: 9001
+      MCP_SERVER_MODE: stdio
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - mcp_server_logs:/app/logs
+    depends_on:
+      bedrock:
+        condition: service_healthy
+    networks:
+      - wordpress-mcp-network
+    command: >
+      wordpress-mcp-server 
+      --wordpress-url http://bedrock:8080
+      --username ${WORDPRESS_ADMIN_USER:-admin}
+      --password ${WORDPRESS_ADMIN_PASSWORD:-admin123}
+      --mcp-port 9001
+      --mode stdio
+      --log-level ${LOG_LEVEL:-INFO}
+
+  # WordPress MCP Server (HTTP mode for remote access) - Optional
+  wordpress-mcp-server-http:
+    build: .
+    container_name: wordpress-mcp-server-http
+    restart: unless-stopped
+    ports:
+      - "9001:9001" # MCP server HTTP endpoint
+    environment:
+      WORDPRESS_URL: http://bedrock:8080
+      WORDPRESS_USERNAME: ${WORDPRESS_ADMIN_USER:-admin}
+      WORDPRESS_PASSWORD: ${WORDPRESS_ADMIN_PASSWORD:-admin123}
+      MCP_SERVER_PORT: 9001
+      MCP_SERVER_MODE: http
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - mcp_server_logs:/app/logs
+    depends_on:
+      bedrock:
+        condition: service_healthy
+    networks:
+      - wordpress-mcp-network
+    command: >
+      wordpress-mcp-server 
+      --wordpress-url http://bedrock:8080
+      --username ${WORDPRESS_ADMIN_USER:-admin}
+      --password ${WORDPRESS_ADMIN_PASSWORD:-admin123}
+      --mcp-port 9001
+      --mode http
+      --host 0.0.0.0
+      --log-level ${LOG_LEVEL:-INFO}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9001/health"]
+      timeout: 10s
+      retries: 3
+      interval: 30s
+      start_period: 30s
+    profiles:
+      - http # Only start with --profile http
+
+  # Nginx Reverse Proxy (Optional - for production)
+  nginx:
+    image: nginx:alpine
+    container_name: wordpress-mcp-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - nginx_logs:/var/log/nginx
+    depends_on:
+      - bedrock
+    networks:
+      - wordpress-mcp-network
+    profiles:
+      - production # Only start with --profile production
+
+# Volumes for data persistence
+volumes:
+  bedrock_db_data:
+    driver: local
+  bedrock_wp_content:
+    driver: local
+  bedrock_wp_themes:
+    driver: local
+  bedrock_wp_plugins:
+    driver: local
+  mcp_server_logs:
+    driver: local
+  nginx_logs:
+    driver: local
+
+# Networks
+networks:
+  wordpress-mcp-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

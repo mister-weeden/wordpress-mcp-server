@@ -1,14 +1,14 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from mcp_agent.workflows.evaluator_optimizer.evaluator_optimizer import (
+from mcp.workflows.evaluator_optimizer.evaluator_optimizer import (
     EvaluatorOptimizerLLM,
     EvaluationResult,
     QualityRating,
 )
 
 
-from mcp_agent.workflows.llm.augmented_llm import AugmentedLLM
+from mcp.workflows.llm.augmented_llm import AugmentedLLM
 
 
 class DummyLLM(AugmentedLLM):

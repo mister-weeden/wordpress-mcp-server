@@ -4,16 +4,16 @@ import pytest
 from typing import List, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from mcp_agent.core.context import Context
+    from mcp.core.context import Context
 
-from mcp_agent.workflows.embedding.embedding_base import FloatArray
-from mcp_agent.workflows.intent_classifier.intent_classifier_base import (
+from mcp.workflows.embedding.embedding_base import FloatArray
+from mcp.workflows.intent_classifier.intent_classifier_base import (
     IntentClassificationResult,
 )
-from mcp_agent.workflows.intent_classifier.intent_classifier_embedding import (
+from mcp.workflows.intent_classifier.intent_classifier_embedding import (
     EmbeddingIntent,
 )
-from mcp_agent.workflows.intent_classifier.intent_classifier_embedding_cohere import (
+from mcp.workflows.intent_classifier.intent_classifier_embedding_cohere import (
     CohereEmbeddingIntentClassifier,
 )
 

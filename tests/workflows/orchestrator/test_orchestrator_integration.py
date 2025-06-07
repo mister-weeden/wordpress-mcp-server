@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from mcp_agent.workflows.llm.augmented_llm import RequestParams
-from mcp_agent.workflows.orchestrator.orchestrator import Orchestrator
-from mcp_agent.workflows.orchestrator.orchestrator_models import (
+from mcp.workflows.llm.augmented_llm import RequestParams
+from mcp.workflows.orchestrator.orchestrator import Orchestrator
+from mcp.workflows.orchestrator.orchestrator_models import (
     Plan,
     Step,
     NextStep,

@@ -29,7 +29,7 @@ from pydantic import (
 
 import pytest
 
-from mcp_agent.utils.pydantic_type_serializer import (
+from mcp.utils.pydantic_type_serializer import (
     serialize_model,
     deserialize_model,
 )

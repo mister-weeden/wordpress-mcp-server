@@ -9,15 +9,15 @@ from mcp.types import (
     CallToolRequestParams,
 )
 
-from mcp_agent.workflows.swarm.swarm import (
+from mcp.workflows.swarm.swarm import (
     AgentFunctionResult,
     SwarmAgent,
     DoneAgent,
     create_agent_resource,
     create_agent_function_result_resource,
 )
-from mcp_agent.workflows.swarm.swarm_openai import OpenAISwarm
-from mcp_agent.core.context import Context
+from mcp.workflows.swarm.swarm_openai import OpenAISwarm
+from mcp.core.context import Context
 
 
 class TestSwarmAgent:

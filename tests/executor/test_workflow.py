@@ -1,6 +1,6 @@
 import asyncio
 import pytest
-from mcp_agent.executor.workflow import WorkflowState, WorkflowResult, Workflow
+from mcp.executor.workflow import WorkflowState, WorkflowResult, Workflow
 from unittest.mock import MagicMock
 
 

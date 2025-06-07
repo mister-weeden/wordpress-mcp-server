@@ -3,10 +3,10 @@ from unittest.mock import AsyncMock, MagicMock
 import numpy as np
 from typing import List
 
-from mcp_agent.core.context import Context
-from mcp_agent.workflows.embedding.embedding_base import FloatArray, EmbeddingModel
-from mcp_agent.workflows.llm.augmented_llm import AugmentedLLM
-from mcp_agent.workflows.router.router_base import (
+from mcp.core.context import Context
+from mcp.workflows.embedding.embedding_base import FloatArray, EmbeddingModel
+from mcp.workflows.llm.augmented_llm import AugmentedLLM
+from mcp.workflows.router.router_base import (
     RouterCategory,
     ServerRouterCategory,
     AgentRouterCategory,
@@ -59,7 +59,7 @@ def mock_agent():
     """
     Returns a real Agent instance for testing.
     """
-    from mcp_agent.agents.agent import Agent
+    from mcp.agents.agent import Agent
 
     agent = Agent(
         name="test_agent",

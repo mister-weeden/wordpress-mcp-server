@@ -10,8 +10,8 @@ from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
 from rich.text import Text
-from mcp_agent.logging.event_progress import convert_log_event, ProgressAction
-from mcp_agent.logging.events import Event
+from mcp.logging.event_progress import convert_log_event, ProgressAction
+from mcp.logging.events import Event
 
 
 def load_events(path: Path) -> list[Event]:

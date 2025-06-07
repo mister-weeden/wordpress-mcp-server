@@ -3,8 +3,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import numpy as np
 from typing import List
 
-from mcp_agent.workflows.router.router_embedding import EmbeddingRouter
-from mcp_agent.workflows.router.router_embedding_openai import OpenAIEmbeddingRouter
+from mcp.workflows.router.router_embedding import EmbeddingRouter
+from mcp.workflows.router.router_embedding_openai import OpenAIEmbeddingRouter
 
 
 class MockOpenAIEmbeddingModel:

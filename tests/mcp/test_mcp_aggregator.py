@@ -5,7 +5,7 @@ import asyncio
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
-import src.mcp_agent.mcp.mcp_aggregator as mcp_aggregator_mod
+import src.mcp.mcp.mcp_aggregator as mcp_aggregator_mod
 
 
 class DummyContext:
@@ -461,7 +461,7 @@ async def test_mcp_aggregator_list_tools_and_prompts():
 
     # Import real Tool and Prompt models
     from mcp.types import Tool, Prompt
-    from src.mcp_agent.mcp.mcp_aggregator import NamespacedTool, NamespacedPrompt
+    from src.mcp.mcp.mcp_aggregator import NamespacedTool, NamespacedPrompt
 
     # Setup tool and prompt maps using real models
     tool1 = Tool(name="toolA", description="desc", inputSchema={})

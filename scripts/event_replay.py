@@ -10,9 +10,9 @@ from datetime import datetime
 from pathlib import Path
 
 import typer
-from mcp_agent.logging.event_progress import convert_log_event
-from mcp_agent.logging.events import Event
-from mcp_agent.logging.rich_progress import RichProgressDisplay
+from mcp.logging.event_progress import convert_log_event
+from mcp.logging.events import Event
+from mcp.logging.rich_progress import RichProgressDisplay
 
 
 def load_events(path: Path) -> list[Event]:

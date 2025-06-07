@@ -3,9 +3,9 @@ from unittest.mock import AsyncMock, MagicMock
 
 from mcp.types import CallToolResult, TextContent
 
-from mcp_agent.agents.agent import Agent
-from mcp_agent.core.context import Context
-from mcp_agent.workflows.swarm.swarm import SwarmAgent, AgentFunctionResult, DoneAgent
+from mcp.agents.agent import Agent
+from mcp.core.context import Context
+from mcp.workflows.swarm.swarm import SwarmAgent, AgentFunctionResult, DoneAgent
 
 
 @pytest.fixture

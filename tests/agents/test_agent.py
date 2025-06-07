@@ -4,12 +4,12 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from mcp.server.fastmcp.tools import Tool as FastTool
 from mcp.types import CallToolResult, TextContent, Tool
 
-from mcp_agent.agents.agent import Agent, HUMAN_INPUT_TOOL_NAME
-from mcp_agent.human_input.types import (
+from mcp.agents.agent import Agent, HUMAN_INPUT_TOOL_NAME
+from mcp.human_input.types import (
     HumanInputRequest,
     HumanInputResponse,
 )
-from mcp_agent.workflows.llm.augmented_llm import AugmentedLLM
+from mcp.workflows.llm.augmented_llm import AugmentedLLM
 
 
 class TestAgent:
@@ -18,7 +18,7 @@ class TestAgent:
     @pytest.fixture
     def mock_context(self):
         """Create a Context with mocked components for testing."""
-        from mcp_agent.core.context import Context
+        from mcp.core.context import Context
 
         context = Context()
         # Use an AsyncMock for executor to support 'await executor.execute(...)'
@@ -289,7 +289,7 @@ class TestAgent:
     async def test_list_tools_parent_call(self, basic_agent):
         """Test that list_tools returns parent tool from internal state."""
         # Patch executor.execute to return InitAggregatorResponse with parent_tool
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         parent_tool = Tool(
             name="parent_tool", description="A parent tool", inputSchema={}
@@ -317,7 +317,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_list_tools_with_functions(self, agent_with_functions, test_function):
         """Test that list_tools includes function tools."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         parent_tool = Tool(
             name="parent_tool", description="A parent tool", inputSchema={}
@@ -349,7 +349,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_list_tools_with_human_input(self, agent_with_human_input):
         """Test that list_tools includes human input tool when callback is set."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         parent_tool = Tool(
             name="parent_tool", description="A parent tool", inputSchema={}
@@ -386,7 +386,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_list_tools_without_human_input(self, basic_agent):
         """Test that list_tools doesn't include human input tool when callback is not set."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         parent_tool = Tool(
             name="parent_tool", description="A parent tool", inputSchema={}
@@ -420,7 +420,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_call_tool_parent(self, basic_agent):
         """Test calling a parent tool."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         tool_name = "parent_tool"
         arguments = {"arg1": "value1"}
@@ -460,7 +460,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_call_tool_function(self, agent_with_functions, test_function):
         """Test calling a function tool."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         tool_name = test_function.__name__  # Should be "function" not "test_function"
         arguments = {"param1": "test", "param2": 42}
@@ -491,7 +491,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_call_tool_human_input(self, agent_with_human_input):
         """Test calling the human input tool."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         tool_name = HUMAN_INPUT_TOOL_NAME
         arguments = {
@@ -530,7 +530,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_call_tool_human_input_timeout(self, agent_with_human_input):
         """Test calling the human input tool with timeout."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         tool_name = HUMAN_INPUT_TOOL_NAME
         arguments = {
@@ -571,7 +571,7 @@ class TestAgent:
     @pytest.mark.asyncio
     async def test_call_tool_human_input_error(self, agent_with_human_input):
         """Test calling the human input tool with general error."""
-        from mcp_agent.agents.agent import InitAggregatorResponse, NamespacedTool
+        from mcp.agents.agent import InitAggregatorResponse, NamespacedTool
 
         tool_name = HUMAN_INPUT_TOOL_NAME
         arguments = {

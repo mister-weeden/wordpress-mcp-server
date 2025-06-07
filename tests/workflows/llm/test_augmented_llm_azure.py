@@ -25,7 +25,7 @@ from mcp.types import (
     CallToolResult,
 )
 
-from mcp_agent.workflows.llm.augmented_llm_azure import (
+from mcp.workflows.llm.augmented_llm_azure import (
     AzureAugmentedLLM,
     RequestParams,
     MCPAzureTypeConverter,
@@ -43,7 +43,7 @@ class TestAzureAugmentedLLM:
         Creates a mock Azure LLM instance with common mocks set up.
         """
         # Use a real AzureSettings object for config.azure to satisfy Pydantic validation
-        from mcp_agent.config import AzureSettings
+        from mcp.config import AzureSettings
 
         azure_settings = AzureSettings(
             api_key="test_key",
@@ -664,7 +664,7 @@ class TestAzureAugmentedLLM:
         """
         Tests the mcp_content_to_azure_content helper function.
         """
-        from mcp_agent.workflows.llm.augmented_llm_azure import (
+        from mcp.workflows.llm.augmented_llm_azure import (
             mcp_content_to_azure_content,
         )
 
@@ -715,7 +715,7 @@ class TestAzureAugmentedLLM:
         """
         Tests the azure_content_to_mcp_content helper function.
         """
-        from mcp_agent.workflows.llm.augmented_llm_azure import (
+        from mcp.workflows.llm.augmented_llm_azure import (
             azure_content_to_mcp_content,
         )
 
@@ -752,7 +752,7 @@ class TestAzureAugmentedLLM:
         """
         Tests the image_url_to_mime_and_base64 helper function.
         """
-        from mcp_agent.workflows.llm.augmented_llm_azure import (
+        from mcp.workflows.llm.augmented_llm_azure import (
             image_url_to_mime_and_base64,
         )
 
@@ -778,7 +778,7 @@ class TestAzureAugmentedLLM:
         """
         Tests the typed_dict_extras helper function.
         """
-        from mcp_agent.workflows.llm.augmented_llm_azure import typed_dict_extras
+        from mcp.workflows.llm.augmented_llm_azure import typed_dict_extras
 
         # Test with dict including excluded and non-excluded fields
         test_dict = {

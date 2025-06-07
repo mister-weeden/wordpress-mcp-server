@@ -1,4 +1,4 @@
-from mcp_agent.workflows.orchestrator.orchestrator_models import (
+from mcp.workflows.orchestrator.orchestrator_models import (
     Task,
     ServerTask,
     AgentTask,
