@@ -15,8 +15,8 @@ from rich.panel import Panel
 from rich.layout import Layout
 from rich.text import Text
 
-from mcp_agent.logging.event_progress import convert_log_event, ProgressEvent
-from mcp_agent.logging.events import Event
+from mcp.logging.event_progress import convert_log_event, ProgressEvent
+from mcp.logging.events import Event
 
 
 def get_key() -> str:

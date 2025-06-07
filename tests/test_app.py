@@ -3,10 +3,10 @@ import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from datetime import timedelta
 
-from mcp_agent.app import MCPApp
-from mcp_agent.core.context import Context
-from mcp_agent.config import Settings
-from mcp_agent.human_input.types import HumanInputResponse
+from mcp.app import MCPApp
+from mcp.core.context import Context
+from mcp.config import Settings
+from mcp.human_input.types import HumanInputResponse
 
 
 class TestMCPApp:

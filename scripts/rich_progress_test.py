@@ -3,8 +3,8 @@
 
 import asyncio
 import random
-from mcp_agent.logging.events import Event
-from mcp_agent.logging.listeners import ProgressListener
+from mcp.logging.events import Event
+from mcp.logging.listeners import ProgressListener
 from rich import print
 
 

@@ -3,8 +3,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from pydantic import BaseModel
 
-from mcp_agent.config import OpenAISettings
-from mcp_agent.workflows.llm.augmented_llm_ollama import (
+from mcp.config import OpenAISettings
+from mcp.workflows.llm.augmented_llm_ollama import (
     OllamaAugmentedLLM,
 )
 
@@ -164,7 +164,7 @@ class TestOllamaAugmentedLLM:
         # Create a context and ensure config.openai.default_model is a string
         # because OpenAIAugmentedLLM's __init__ will access it.
         context = mock_context_factory()
-        from mcp_agent.config import OpenAISettings
+        from mcp.config import OpenAISettings
 
         context.config.openai = OpenAISettings(
             api_key="test_key_for_instructor",

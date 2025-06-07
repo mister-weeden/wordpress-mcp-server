@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from mcp_agent.core.context import Context
-from mcp_agent.agents.agent import Agent
-from mcp_agent.workflows.llm.augmented_llm import AugmentedLLM
+from mcp.core.context import Context
+from mcp.agents.agent import Agent
+from mcp.workflows.llm.augmented_llm import AugmentedLLM
 
 
 @pytest.fixture

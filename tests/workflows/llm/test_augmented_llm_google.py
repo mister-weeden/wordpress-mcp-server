@@ -5,8 +5,8 @@ from pydantic import BaseModel
 
 from mcp.types import TextContent, SamplingMessage, ImageContent
 
-from mcp_agent.config import GoogleSettings
-from mcp_agent.workflows.llm.augmented_llm_google import (
+from mcp.config import GoogleSettings
+from mcp.workflows.llm.augmented_llm_google import (
     GoogleAugmentedLLM,
     RequestParams,
     GoogleMCPTypeConverter,

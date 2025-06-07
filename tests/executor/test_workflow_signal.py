@@ -2,7 +2,7 @@ from unittest.mock import MagicMock, patch
 import asyncio
 import pytest
 
-from mcp_agent.executor.workflow_signal import (
+from mcp.executor.workflow_signal import (
     Signal,
     SignalRegistration,
     PendingSignal,

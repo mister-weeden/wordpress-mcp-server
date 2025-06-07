@@ -1,0 +1,111 @@
+# Git and version control
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache
+
+# Virtual environments
+venv/
+.venv/
+ENV/
+env/
+.env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+*.md
+docs/
+examples/
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Configuration examples
+.env.example
+config.example.*
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Logs
+logs/
+*.log
+
+# Backup files
+backups/
+*.bak
+*.backup
+
+# Scripts
+scripts/
+*.sh
+
+# SSL certificates
+ssl/
+*.pem
+*.key
+*.crt
+
+# Development dependencies
+.editorconfig
+.pre-commit-config.yaml
+mypy.ini
+setup.cfg
+pyproject.toml
+MANIFEST.in
+
+# Runtime data
+data/
+storage/
+uploads/
+
+# Nginx config
+nginx/

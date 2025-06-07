@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
-from mcp_agent.executor.temporal.workflow_registry import TemporalWorkflowRegistry
+from mcp.executor.temporal.workflow_registry import TemporalWorkflowRegistry
 
 
 @pytest.fixture

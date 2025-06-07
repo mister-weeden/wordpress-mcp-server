@@ -16,8 +16,8 @@ from mcp.types import (
     SamplingMessage,
 )
 
-from mcp_agent.config import OpenAISettings
-from mcp_agent.workflows.llm.augmented_llm_openai import (
+from mcp.config import OpenAISettings
+from mcp.workflows.llm.augmented_llm_openai import (
     OpenAIAugmentedLLM,
     RequestParams,
     MCPOpenAITypeConverter,

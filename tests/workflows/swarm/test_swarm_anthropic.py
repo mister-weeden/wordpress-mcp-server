@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from mcp_agent.workflows.swarm.swarm_anthropic import AnthropicSwarm
-from mcp_agent.workflows.llm.augmented_llm import RequestParams
+from mcp.workflows.swarm.swarm_anthropic import AnthropicSwarm
+from mcp.workflows.llm.augmented_llm import RequestParams
 
 
 class TestAnthropicSwarm:

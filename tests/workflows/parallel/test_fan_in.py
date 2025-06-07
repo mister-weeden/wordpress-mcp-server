@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 
-from mcp_agent.workflows.parallel.fan_in import FanIn
-from mcp_agent.workflows.llm.augmented_llm import RequestParams
+from mcp.workflows.parallel.fan_in import FanIn
+from mcp.workflows.llm.augmented_llm import RequestParams
 
 
 class TestFanIn:

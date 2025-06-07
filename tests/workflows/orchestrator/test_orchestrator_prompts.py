@@ -1,4 +1,4 @@
-from mcp_agent.workflows.orchestrator.orchestrator_prompts import (
+from mcp.workflows.orchestrator.orchestrator_prompts import (
     TASK_RESULT_TEMPLATE,
     STEP_RESULT_TEMPLATE,
     PLAN_RESULT_TEMPLATE,

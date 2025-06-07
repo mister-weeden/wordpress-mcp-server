@@ -3,10 +3,10 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from mcp_agent.core.context import Context
+    from mcp.core.context import Context
 
-from mcp_agent.workflows.router.router_llm import LLMRouter
-from mcp_agent.workflows.router.router_llm_openai import (
+from mcp.workflows.router.router_llm import LLMRouter
+from mcp.workflows.router.router_llm_openai import (
     OpenAILLMRouter,
     ROUTING_SYSTEM_INSTRUCTION,
 )
@@ -179,7 +179,7 @@ class TestOpenAILLMRouter:
     async def test_routing_functionality(self, setup_openai_context, mock_agent):
         """Tests that the routing functionality works correctly."""
         # Create a mock LLM that returns a proper structured response
-        from mcp_agent.workflows.router.router_llm import (
+        from mcp.workflows.router.router_llm import (
             StructuredResponse,
             StructuredResponseCategory,
         )
@@ -229,7 +229,7 @@ class TestOpenAILLMRouter:
     async def test_full_routing_flow(self, setup_openai_context, mock_agent):
         """Tests the full routing flow from request to LLM to result."""
         # Create a mock response from generate_structured
-        from mcp_agent.workflows.router.router_llm import (
+        from mcp.workflows.router.router_llm import (
             StructuredResponse,
             StructuredResponseCategory,
         )

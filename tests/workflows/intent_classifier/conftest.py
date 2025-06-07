@@ -3,8 +3,8 @@ from unittest.mock import MagicMock
 import numpy as np
 from typing import List
 
-from mcp_agent.workflows.embedding.embedding_base import FloatArray
-from mcp_agent.workflows.intent_classifier.intent_classifier_base import Intent
+from mcp.workflows.embedding.embedding_base import FloatArray
+from mcp.workflows.intent_classifier.intent_classifier_base import Intent
 
 
 @pytest.fixture

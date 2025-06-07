@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock
 
-from mcp_agent.workflows.parallel.parallel_llm import ParallelLLM
-from mcp_agent.workflows.llm.augmented_llm import RequestParams
+from mcp.workflows.parallel.parallel_llm import ParallelLLM
+from mcp.workflows.llm.augmented_llm import RequestParams
 
 
 class TestParallelLLM:
@@ -180,7 +180,7 @@ class TestParallelLLM:
         assert parallel_llm_with_function.fan_in_fn == mock_fan_in_fn
         assert parallel_llm_with_function.context == mock_context
         assert parallel_llm_with_function.fan_in is None
-        from mcp_agent.workflows.parallel.fan_out import FanOut
+        from mcp.workflows.parallel.fan_out import FanOut
 
         assert isinstance(parallel_llm_with_function.fan_out, FanOut)
 

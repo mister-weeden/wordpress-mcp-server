@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
-from mcp_agent.executor.temporal import TemporalExecutor, TemporalExecutorConfig
+from mcp.executor.temporal import TemporalExecutor, TemporalExecutorConfig
 
 
 @pytest.fixture

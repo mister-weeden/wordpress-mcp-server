@@ -3,16 +3,16 @@ import pytest
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from mcp_agent.core.context import Context
+    from mcp.core.context import Context
 
-from mcp_agent.workflows.intent_classifier.intent_classifier_base import (
+from mcp.workflows.intent_classifier.intent_classifier_base import (
     IntentClassificationResult,
 )
-from mcp_agent.workflows.intent_classifier.intent_classifier_llm import (
+from mcp.workflows.intent_classifier.intent_classifier_llm import (
     LLMIntentClassificationResult,
     StructuredIntentResponse,
 )
-from mcp_agent.workflows.intent_classifier.intent_classifier_llm_anthropic import (
+from mcp.workflows.intent_classifier.intent_classifier_llm_anthropic import (
     AnthropicLLMIntentClassifier,
     CLASSIFIER_SYSTEM_INSTRUCTION,
 )

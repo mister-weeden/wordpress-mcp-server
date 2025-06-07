@@ -1,8 +1,8 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from mcp_agent.workflows.parallel.fan_out import FanOut
-from mcp_agent.workflows.llm.augmented_llm import RequestParams
+from mcp.workflows.parallel.fan_out import FanOut
+from mcp.workflows.llm.augmented_llm import RequestParams
 
 
 class TestFanOut:
